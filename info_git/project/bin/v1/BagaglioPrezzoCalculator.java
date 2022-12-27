@@ -3,7 +3,7 @@ import java.util.*;
 
 public class BagaglioPrezzoCalculator {
     private static final double COSTO_PER_KG = 5.00;
-    private static final Scanner E = new Scanner(System.in);
+   
     private static final double SOVRAPPREZZO = 10.00;
     private Bagaglio bag;
 
@@ -34,6 +34,7 @@ public class BagaglioPrezzoCalculator {
     }
 
     public void prendiInput() {
+        Scanner E = new Scanner(System.in);
         System.out.println("inserire peso bagaglio: ");
         bag.setWeight(E.nextDouble());
     }
