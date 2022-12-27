@@ -1,5 +1,9 @@
 public class Bagaglio {
-	private static final MAX_WEIGHT=20.00;private static final MAX_HEIGHT_HAND=55;private static final MAX_LENGTH_HAND=40;private static final MAX_WIDTH_HAND=20;private static final MAX_DIMENSION_HOLD=158;
+	private static final MAX_WEIGHT=20.00;
+	private static final MAX_HEIGHT_HAND=55;
+	private static final MAX_LENGTH_HAND=40;
+	private static final MAX_WIDTH_HAND=20;
+	private static final MAX_DIMENSION_HOLD=158;
 	private double weight, height, length, width;
 	private String type;
 
@@ -12,6 +16,11 @@ public class Bagaglio {
 	}
 
 	public Bagaglio(double w, double h, double l, double wid, String t) {
+		this.weight = 0.0;
+		this.height = 0.0;
+		this.length = 0.0;
+		this.width = 0.0;
+		this.type = "undefined";
 		setWeight(w);
 		setType(t);
 		setWidth(wid);
@@ -25,33 +34,33 @@ public class Bagaglio {
 	public void setWeight(double v) {
 		if (v > 0) {
 			this.weight = v;
-		} else {
+		}/* else {
 			this.weight = 0;
-		}
+		}*/
 	}
 
 	public void setHeight(double h) {
 		if (h > 0) {
 			this.height = h;
-		} else {
+		}/* else {
 			this.height = 0;
-		}
+		}*/
 	}
 
 	public void setLength(double h) {
 		if (h > 0) {
 			this.length = h;
-		} else {
+		}/* else {
 			this.length = 0;
-		}
+		}*/
 	}
 
 	public void setWidth(double h) {
 		if (h > 0) {
 			this.width = h;
-		} else {
+		}/* else {
 			this.width = 0;
-		}
+		}*/
 	}
 
 	public void setType(boolean h) {
