@@ -34,33 +34,33 @@ public class Bagaglio {
 	public void setWeight(double v) {
 		if (v > 0) {
 			this.weight = v;
-		}/* else {
+		} else {
 			this.weight = 0;
-		}*/
+		}
 	}
 
 	public void setHeight(double h) {
 		if (h > 0) {
 			this.height = h;
-		}/* else {
+		} else {
 			this.height = 0;
-		}*/
+		}
 	}
 
 	public void setLength(double h) {
 		if (h > 0) {
 			this.length = h;
-		}/* else {
+		} else {
 			this.length = 0;
-		}*/
+		}
 	}
 
 	public void setWidth(double h) {
 		if (h > 0) {
 			this.width = h;
-		}/* else {
+		} else {
 			this.width = 0;
-		}*/
+		}
 	}
 
 	public void setType(boolean h) {

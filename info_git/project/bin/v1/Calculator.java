@@ -1,8 +1,8 @@
 public class Calculator {
     private Contatore c;
     private static final double COSTO = 3,5;
-    public Calculator(){
-        c= new Contatore();
+    public Calculator(Contatore con){
+        if (con!=null) c=con;
     }
     public void start(){
         double ris;
