@@ -6,7 +6,7 @@ public class Bagaglio {
 	private static final MAX_DIMENSION_HOLD=158;
 	private double weight, height, length, width;
 	private String type;
-
+	
 	public Bagaglio() {
 		this.weight = 0.0;
 		this.height = 0.0;
@@ -21,7 +21,7 @@ public class Bagaglio {
 		this.length = 0.0;
 		this.width = 0.0;
 		this.type = "undefined";
-		setWeight(w);
+		setWeight(w); 
 		setType(t);
 		setWidth(wid);
 		setHeight(h);
