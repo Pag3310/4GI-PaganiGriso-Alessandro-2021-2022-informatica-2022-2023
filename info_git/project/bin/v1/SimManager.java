@@ -6,7 +6,7 @@ import java.util.*;
 public class SimManager {
 
     private ArrayList<Sim> lista;
-    private static final double COSTO = 2.5;
+    private static final double costoMinInternet = 0.10;
 
     public SimManager() {
         lista = new ArrayList<Sim>();
@@ -49,11 +49,11 @@ public class SimManager {
     public void visualizzaRisultati() {
         double ris;
         for (Sim c : lista) {
-            ris = c.calcolaBolletta();
+            ris = c.consumoAttuale();
             System.out.println("\nI valori del Sim sono: \n" + c.toString() + "\n");
             System.out.println("Il consumo risulta: " + ris + "\n");
-            System.out.println("L'importo del gas a mq: " + COSTO + "\n");
-            System.out.println("L'importo della bolletta è: " + ris * COSTO);
+            System.out.println("L'importo al minuto è: " + costoMinInternet + "\n");
+            System.out.println("L'importo della bolletta è: " + ris * costoMinInternet);
         }
     }
 
@@ -87,9 +87,9 @@ public class SimManager {
                 // apre il file in scrittura
                 fileOut = new FileWriter(fileN);
                 String str;
-                for (Sim c : this.lista) {
-                    str = "" + c.getConsumiPrec() + ";" + c.getConsumiAtt() + ";";
-                    str += +c.calcolaBolletta() + '\n';
+                for (Sim c : c.lista) {
+                    str = "" + c.getCreditoPrecedente() + ";" + c.getCreditoAttuale() + ";";
+                    str += +c.getConsumoAttuale() + '\n';
                     fileOut.write(str);
                 }
                 fileOut.close(); // chiude il file
@@ -100,63 +100,60 @@ public class SimManager {
         System.out.println("\nBye bye!");
     }
 
-    public void memorizzaSimNellaLista(String[] public void memorizzaSimNellaLista(String[] valori) {
+    public void memorizzaSimNellaLista(String[] valori) {
         try {
-        int cont = Integer.parseInt(valori[0]);
-        double prec = Double.parseDouble(valori[1]);
-        double att = Double.parseDouble(valori[2]);
-        if (cont > 0 && prec >= 0 && att >= 0) {
-        lista.add(new Sim(cont, prec, att));
-        } else {
-        System.out.println("Dati non validi");
-        }
-        } catch (NumberFormatException e) {
-        System.out.println("Dati non validi");
+            int creditoAttuale = Integer.parseInt(valori[0]);
+            String numero = valori[1];
+            int consumoAttuale = Integer.parseInt(valori[2]);
+            int cicliConsumo = Integer.parseInt(valori[3]);
+            lista.add(new Sim(creditoAttuale, numero, consumoAttuale, cicliConsumo));
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("Dati non validi");
         }
     }
+
     public void effettuaChiamata(int durata) {
         if (durata < 0) {
-        System.out.println("La durata della chiamata deve essere maggiore o uguale a zero.");
-        return;
+            System.out.println("La durata della chiamata deve essere maggiore o uguale a zero.");
+            return;
         }
-        if (durata > this.creditoAttuale) {
-        System.out.println("Credito insufficiente per effettuare la chiamata.");
-        return;
+        if (durata > c.creditoAttuale) {
+            System.out.println("Credito insufficiente per effettuare la chiamata.");
+            return;
         }
-        this.creditoAttuale -= durata;
-        this.consumoAttuale += durata;
-        this.cicliConsumo++;
-        }
-        
-        public void connettiInternet(float minuti) {
+        c.creditoAttuale -= durata;
+        c.consumoAttuale += durata;
+        c.cicliConsumo++;
+    }
+
+    public void connettiInternet(float minuti) {
         if (minuti < 0) {
-        System.out.println("Il numero di minuti deve essere maggiore o uguale a zero.");
-        return;
+            System.out.println("Il numero di minuti deve essere maggiore o uguale a zero.");
+            return;
         }
-        if (minuti > this.creditoAttuale) {
-        System.out.println("Credito insufficiente per connettersi a internet.");
-        return;
+        if (minuti > c.creditoAttuale) {
+            System.out.println("Credito insufficiente per connettersi a internet.");
+            return;
         }
         double consumo = minuti * costoMinInternet;
-        if (this.consumoAttuale + consumo > consumoMax) {
-        System.out.println("Il consumo massimo è stato raggiunto, non è possibile connettersi a internet.");
-        return;
+        if (c.consumoAttuale + consumo > consumoMax) {
+            System.out.println("Il consumo massimo è stato raggiunto, non è possibile connettersi a internet.");
+            return;
         }
-        this.creditoAttuale -= minuti;
-        this.consumoAttuale += consumo;
-        this.cicliConsumo++;
-        }
-        
-        public String toString() {
-        String res = "Numero: " + this.numero + "\n";
-        res += "Credito attuale: " + this.creditoAttuale + "\n";
-        res += "Consumo attuale: " + this.consumoAttuale + "\n";
-        res += "Cicli di consumo: " + this.cicliConsumo;
-        return res;
-        }
-        }
+        c.creditoAttuale -= minuti;
+        c.consumoAttuale += consumo;
+        c.cicliConsumo++;
+    }
 
-        
+    public String toString() {
+        String res = "Numero: " + c.numero + "\n";
+        res += "Credito attuale: " + c.creditoAttuale + "\n";
+        res += "Consumo attuale: " + c.consumoAttuale + "\n";
+        res += "Cicli di consumo: " + c.cicliConsumo;
+        return res;
+    }
+}
+
 
         
         
