@@ -3,16 +3,16 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class SimCalculator {
+public class SimManager {
 
     private ArrayList<Sim> lista;
     private static final double COSTO = 2.5;
 
-    public SimCalculator() {
+    public SimManager() {
         lista = new ArrayList<Sim>();
     }
 
-    public SimCalculator(ArrayList<Sim> lis) {
+    public SimManager(ArrayList<Sim> lis) {
         lista = new ArrayList<Sim>();
         if (lis != null) {
             for (Sim c : lis) {
