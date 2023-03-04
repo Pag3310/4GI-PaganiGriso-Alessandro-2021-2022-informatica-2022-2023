@@ -1,4 +1,4 @@
-public class Contatore{
+public class Contatore{\
     private double valoreAttuale;
     private double valorePrecedente;
 
